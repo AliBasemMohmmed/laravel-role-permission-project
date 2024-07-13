@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use GrahamCampbell\ResultType\Success;
 
 class PatientController extends Controller
 {
@@ -74,7 +75,7 @@ class PatientController extends Controller
         $prescription = Prescription::where('patient_name', $patient->name)->first();
         $user2=User::where('name', $prescription->doctor_name)->first();
         $Pharmacy = Pharmacy::where('user_id', $user2->id)->first();
-        if ($prescription) {
+        if ($prescription->doctor_name !=null) {
             $medications = Medication::where('prescription_id', $prescription->id)->first();
             return view('patient.prescription', [
                 'doctor' => $prescription,
@@ -83,8 +84,8 @@ class PatientController extends Controller
                 'Pharmacy' =>  $Pharmacy
             ]);
         } else {
-            // Handle case where no prescription is found for the patient
-            // For example, redirect back or show an error message
+            return redirect()->route('home.index')
+            ->with('success', 'New prescription is added successfully.');
         }
 
     }

@@ -9,7 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>My_Pharamcy</title>
-    
+    <link rel="shortcut icon" href="{{ URL::to('assets/icon/ertyu.ico') }}">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -68,8 +69,8 @@
                                 <li><a class="nav-link" href="{{ route('dectors.index') }}">Manage Patient</a></li>
                             @endcanany
                             @canany(['create-dector', 'edit-dector', 'delete-dector'])
-                            <li><a class="nav-link" href="{{ route('prescription.index') }}">Manage prescription</a></li>
-                        @endcanany
+                                <li><a class="nav-link" href="{{ route('prescription.index') }}">Manage prescription</a></li>
+                            @endcanany
                             @canany(['create-product', 'edit-product', 'delete-product'])
                                 <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li>
                             @endcanany
@@ -77,8 +78,8 @@
                                 <li><a class="nav-link" href="{{ route('products.index') }}">View Products</a></li>
                             @endcan
                             @can(['view-patient'])
-                            <li><a class="nav-link" href="{{ route('patients.index') }}">View prescription</a></li>
-                        @endcan
+                                <li><a class="nav-link" href="{{ route('patients.index') }}">View prescription</a></li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
