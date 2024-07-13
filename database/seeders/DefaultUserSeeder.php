@@ -17,6 +17,7 @@ class DefaultUserSeeder extends Seeder
         // Creating Super Admin User
         $superAdmin = User::create([
             'name' => 'Javed Ur Rehman',
+            'gender' => 'male',
             'email' => 'javed@allphptricks.com',
             'password' => Hash::make('javed1234')
         ]);
@@ -25,6 +26,7 @@ class DefaultUserSeeder extends Seeder
         // Creating Admin User
         $admin = User::create([
             'name' => 'Syed Ahsan Kamal',
+            'gender' => 'male',
             'email' => 'ahsan@allphptricks.com',
             'password' => Hash::make('ahsan1234')
         ]);
@@ -33,6 +35,7 @@ class DefaultUserSeeder extends Seeder
         // Creating Product Manager User
         $productManager = User::create([
             'name' => 'Abdul Muqeet',
+            'gender' => 'male',
             'email' => 'muqeet@allphptricks.com',
             'password' => Hash::make('muqeet1234')
         ]);
@@ -41,6 +44,7 @@ class DefaultUserSeeder extends Seeder
         // Creating Application User
         $user = User::create([
             'name' => 'Naghman Ali',
+            'gender' => 'male',
             'email' => 'naghman@allphptricks.com',
             'password' => Hash::make('naghman1234')
         ]);

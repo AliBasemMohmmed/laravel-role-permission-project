@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
+use App\Models\Pharmacy;
+use Illuminate\View\View;
+use App\Models\Medication;
+use App\Models\Prescription;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class PatientController extends Controller
 {
     /**
-     * Instantiate a new UserController instance.
+     * Instantiate a new PatientController instance.
      */
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('permission:create-user|edit-user|delete-user|profile', ['only' => ['index', 'show']]);
+        $this->middleware('permission:view-prescription|edit-patient|delete-patient|profile', ['only' => ['index', 'show']]);
         $this->middleware('permission:create-user|profile', ['only' => ['create', 'store']]);
         $this->middleware('permission:edit-user|profile', ['only' => ['edit', 'update']]);
         $this->middleware('permission:delete-user|profile', ['only' => ['destroy']]);
@@ -64,9 +69,24 @@ class UserController extends Controller
      */
     public function show(User $user): View
     {
-        return view('Users.profile', [
-            'user' => $user
-        ]);
+        $user = Auth::user()->id;
+        $patient = User::where('id', $user)->first();
+        $prescription = Prescription::where('patient_name', $patient->name)->first();
+        $user2=User::where('name', $prescription->doctor_name)->first();
+        $Pharmacy = Pharmacy::where('user_id', $user2->id)->first();
+        if ($prescription) {
+            $medications = Medication::where('prescription_id', $prescription->id)->first();
+            return view('patient.prescription', [
+                'doctor' => $prescription,
+                'prescriptions' => $prescription,
+                'medications' => $medications,
+                'Pharmacy' =>  $Pharmacy
+            ]);
+        } else {
+            // Handle case where no prescription is found for the patient
+            // For example, redirect back or show an error message
+        }
+
     }
 
     /**

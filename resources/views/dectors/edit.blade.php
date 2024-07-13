@@ -6,34 +6,22 @@
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
-                    Add New User
+                    Edit dector
                 </div>
                 <div class="float-end">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
+                    <a href="{{ route('dectors.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
                 </div>
             </div>
             <div class="card-body">
-                <form action="{{ route('users.store') }}" method="post">
+                <form action="{{ route('dectors.update', $dector->id) }}" method="post">
                     @csrf
+                    @method("PUT")
 
                     <div class="mb-3 row">
                         <label for="name" class="col-md-4 col-form-label text-md-end text-start">Name</label>
                         <div class="col-md-6">
-                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $dector->name }}">
                             @error('name')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="gender" class="col-md-4 col-form-label text-md-end text-start">الجنس</label>
-                        <div class="col-md-6">
-                            <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender">
-                                <option value="" selected disabled>اختر الجنس</option>
-                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>ذكر</option>
-                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>أنثى</option>
-                            </select>
-                            @error('gender')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -42,7 +30,7 @@
                     <div class="mb-3 row">
                         <label for="email" class="col-md-4 col-form-label text-md-end text-start">Email Address</label>
                         <div class="col-md-6">
-                          <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                          <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $dector->email }}">
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -58,18 +46,7 @@
                             @enderror
                         </div>
                     </div>
-                    {{-- <div class="mb-3 row">
-                        <label for="patient_age" class="col-md-4 col-form-label text-md-end text-start">Patient
-                            Age</label>
-                        <div class="col-md-6">
-                            <select class="form-control" id="gender" name="medication" required>
-                                <option value="">Select Medication</option>
 
-                                <option value="male">male</option>
-                                <option value="female">female</option>
-                            </select>
-                        </div>
-                    </div> --}}
                     <div class="mb-3 row">
                         <label for="password_confirmation" class="col-md-4 col-form-label text-md-end text-start">Confirm Password</label>
                         <div class="col-md-6">
@@ -84,14 +61,14 @@
                                 @forelse ($roles as $role)
 
                                     @if ($role!='Super Admin')
-                                        <option value="{{ $role }}" {{ in_array($role, old('roles') ?? []) ? 'selected' : '' }}>
+                                    <option value="{{ $role }}" {{ in_array($role, $dectorRoles ?? []) ? 'selected' : '' }}>
                                         {{ $role }}
-                                        </option>
+                                    </option>
                                     @else
-                                        @if (Auth::user()->hasRole('Super Admin'))
-                                            <option value="{{ $role }}" {{ in_array($role, old('roles') ?? []) ? 'selected' : '' }}>
+                                        @if (Auth::User()->hasRole('Super Admin'))
+                                        <option value="{{ $role }}" {{ in_array($role, $dectorRoles ?? []) ? 'selected' : '' }}>
                                             {{ $role }}
-                                            </option>
+                                        </option>
                                         @endif
                                     @endif
 
@@ -106,7 +83,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Add User">
+                        <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Update dector">
                     </div>
 
                 </form>

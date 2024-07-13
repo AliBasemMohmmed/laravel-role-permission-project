@@ -20,15 +20,22 @@ class PermissionSeeder extends Seeder
             'create-user',
             'edit-user',
             'delete-user',
+            'create-dector',
+            'edit-dector',
+            'delete-dector',
             'view-product',
+            'view-patient',
+            'view-pharmacy',
             'create-product',
             'edit-product',
-            'delete-product'
-         ];
+            'delete-product',
+            'view-description',
+            'view-prescription'
+        ];
 
-          // Looping and Inserting Array's Permissions into Permission Table
-         foreach ($permissions as $permission) {
+        // Looping and Inserting Array's Permissions into Permission Table
+        foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
-          }
+        }
     }
 }
