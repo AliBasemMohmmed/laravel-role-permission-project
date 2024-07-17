@@ -37,10 +37,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="mb-3 row">
+                            <label for="Url_location" class="col-md-4 col-form-label text-md-end text-start">رابط الموقع </label>
+                            <div class="col-md-6">
+                                <input type="url" class="form-control @error('Url_location') is-invalid @enderror"
+                                       id="Url_location" name="Url_location" value="{{ old('Url_location') }}">
+                                @error('Url_location')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="mb-3 row">
                             <label for="logo" class="col-md-4 col-form-label text-md-end text-start">
-                                 Image</label>
+                                Image</label>
                             <div class="col-md-6">
                                 <input type="file" class="form-control @error('logo') is-invalid @enderror"
                                     id="logo" name="logo" required>
@@ -53,7 +63,7 @@
                         <div class="mb-3 row">
                             <label for="user_id" class="col-md-4 col-form-label text-md-end text-start">اسم الدكتور</label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control @error('role_id') is-invalid @enderror"
+                                <input type="text" class="form-control @error('role_id') is-invalid @enderror"
                                     id="role_id" name="user_id" value="{{ old('user_id') }}">
                                 @error('user_id')
                                     <span class="text-danger">{{ $message }}</span>

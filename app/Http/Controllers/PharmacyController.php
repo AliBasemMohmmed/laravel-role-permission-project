@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Pharmacy;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreUserRequest;
@@ -50,25 +51,43 @@ class PharmacyController extends Controller
      */
     public function store(StorePharmacyRequest $request): RedirectResponse
     {
+        // استخراج معرف المستخدم (الطبيب) من الاسم المدخل في الطلب
+        $user_id_doctor = $request->user_id;
+        $doctor = User::where('name', $user_id_doctor)->first();
+
+        // التأكد من أن تم العثور على الطبيب
+        if (!$doctor) {
+            return redirect()->back()->withErrors(['user_id' => 'Doctor not found.']);
+        }
+
+        // إعادة تعيين user_id بمعرف الطبيب المحدد
+        $request->merge(['user_id' => $doctor->id]);
+
+        // إنشاء الصيدلية باستخدام البيانات المقدمة في الطلب
         Pharmacy::create($request->all());
+
+        // إعادة التوجيه إلى صفحة قائمة الصيدليات مع رسالة نجاح
         return redirect()->route('pharmacy.index')
             ->withSuccess('New Pharmacy is added successfully.');
     }
+
 
     /**
      * Display the specified resource.
      */
     public function show(Pharmacy $Pharmacy): View
-    { // Example data preparation for a chart
-        $pharmacyVisits = Pharmacy::orderBy('visits_count', 'desc')->take(5)->get();
+
+    { //  Example data preparation for a chart
+
+        $pharmacyVisits = Auth::user();
         // Example logic to calculate gender ratios
         $maleCount = User::where('gender', 'male')->count();
         $femaleCount = User::where('gender', 'female')->count();
         $totalPatients = $maleCount + $femaleCount;
 
         return view('Pharmacys.show', [
-            'Pharmacy' => $Pharmacy,
-            'pharmacyVisits' => $Pharmacy,
+            'pharmacy' => $Pharmacy,
+            'pharmacyVisits' => $pharmacyVisits,
             'maleCount' => $maleCount,
             'femaleCount' => $femaleCount,
             'totalPatients' => $totalPatients,

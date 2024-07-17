@@ -1,62 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <div class="float-start">
-                        Pharmacy Information
-                    </div>
-                    <div class="float-end">
-                        <a href="{{ route('pharmacy.index') }}" class="btn btn-primary btn-sm">&larr; Back</a>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <!-- Display pharmacy details -->
-                    <div class="row mb-3">
-                        <label for="name" class="col-md-4 col-form-label text-md-end text-start"><strong>Name:</strong></label>
-                        <div class="col-md-6">
-                            {{ $Pharmacy->name }}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="float-start">معلومات الصيدلية</span>
+                            <a href="{{ route('pharmacy.index') }}" class="btn btn-sm btn-light">&larr; العودة</a>
                         </div>
                     </div>
-
-                    <div class="row mb-3">
-                        <label for="location" class="col-md-4 col-form-label text-md-end text-start"><strong>Location:</strong></label>
-                        <div class="col-md-6">
-                            {{ $Pharmacy->location }}
+                    <div class="card-body">
+                        <!-- عرض تفاصيل الصيدلية -->
+                        <div class="mb-4">
+                            <label class="fw-bold">الاسم:</label>
+                            <p>{{ $pharmacy->name }}</p>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="logo" class="col-md-4 col-form-label text-md-end text-start"><strong>Logo:</strong></label>
-                        <div class="col-md-6">
-                            <!-- Assuming logo is stored as an image path -->
-                            <img src="{{ asset($Pharmacy->logo) }}" alt="Pharmacy Logo" style="max-width: 150px;">
+                        <div class="mb-4">
+                            <label class="fw-bold">الموقع:</label>
+                            <p>{{ $pharmacy->location }}</p>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="role_id" class="col-md-4 col-form-label text-md-end text-start"><strong>Doctor Name:</strong></label>
-                        <div class="col-md-6">
-                            {{ $Pharmacy->user->name }}
+                        <div class="mb-4">
+                            <label class="fw-bold">الشعار:</label>
+                            <img src="{{ asset($pharmacy->logo) }}" alt="شعار الصيدلية" class="img-fluid rounded" style="max-width: 150px;">
                         </div>
-                    </div>
 
-                    <!-- Display gender ratios -->
-                    <div class="mb-3">
-                        <p>نسبة الذكور: {{ ($maleCount / $totalPatients) * 100 }}%</p>
-                        <p>نسبة الإناث: {{ ($femaleCount / $totalPatients) * 100 }}%</p>
-                    </div>
+                        <div class="mb-4">
+                            <label class="fw-bold">اسم الطبيب:</label>
+                            <p>{{ $pharmacy->user->name }}</p>
+                        </div>
 
-                    <!-- Chart.js for displaying pharmacy visits -->
-                    <canvas id="pharmacyVisitsChart" style="height: 300px;"></canvas>
+                        <!-- عرض نسب الجنس -->
+                        <div class="mb-4">
+                            <p>نسبة الذكور: {{ number_format(($maleCount / $totalPatients) * 100, 2) }}%</p>
+                            <p>نسبة الإناث: {{ number_format(($femaleCount / $totalPatients) * 100, 2) }}%</p>
+                        </div>
+
+                        <!-- عرض رسم بياني لعدد الزيارات باستخدام Chart.js -->
+                        <canvas id="pharmacyVisitsChart" style="height: 300px;"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Chart.js script -->
+    <!-- استيراد مكتبة Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var ctx = document.getElementById('pharmacyVisitsChart').getContext('2d');
@@ -76,9 +67,22 @@
                 }]
             },
             options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                },
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
                     }
                 }
             }

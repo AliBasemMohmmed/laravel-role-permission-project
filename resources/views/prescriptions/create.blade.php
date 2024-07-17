@@ -10,7 +10,7 @@
             <div class="mb-3">
                 <label for="doctor_name" class="form-label">اسم الدكتور</label>
 
-                <input type="text" class="form-control" id="doctor_name" name="doctor_name" value="{{ $doctor->name }}" disabled>
+                <input type="text" class="form-control" id="doctor_name" name="doctor_name" value="{{ $doctor->name }}">
             </div>
             <div class="mb-3">
                 <label for="patient_name" class="form-label">اسم المريض</label>

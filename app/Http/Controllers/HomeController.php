@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $numberofvisit=
+        // $numberofpharmacy=
+        // $numberofusersuperAdmin=
+        // $numberofuserAdmin=
+        // $numberofuserDoctor=
+        // $numberofuserprodectmanger=
+        // $numberofuserpatient=
         return view('home');
     }
 }

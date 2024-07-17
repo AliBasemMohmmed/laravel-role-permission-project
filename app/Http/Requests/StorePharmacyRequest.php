@@ -24,8 +24,9 @@ class StorePharmacyRequest extends FormRequest
         return [
             'name' => 'required|string|max:250',
             'location' => 'required|string',
+            'Url_location' => 'required|string',
             'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'user_id' => 'required|integer|exists:roles,id',
+            'user_id' => 'required|string',
         ];
 
     }

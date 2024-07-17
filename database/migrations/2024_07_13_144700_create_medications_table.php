@@ -12,7 +12,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('prescription_id');
             $table->foreign('prescription_id')->references('id')->on('prescriptions')->onDelete('cascade');
-            $table->string('medication_name');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->string('medication_name');
             $table->string('eating');
             $table->time('time');
             $table->integer('dosage_frequency');

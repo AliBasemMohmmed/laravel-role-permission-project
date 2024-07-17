@@ -49,5 +49,13 @@ class DefaultUserSeeder extends Seeder
             'password' => Hash::make('naghman1234')
         ]);
         $user->assignRole('User');
+
+        // $doctor = User::create([
+        //     'name' => 'Ali basem',
+        //     'gender' => 'male',
+        //     'email' => 'Ali@gmail.com',
+        //     'password' => Hash::make('123123123')
+        // ]);
+        // $doctor->assignRole('Doctor');
     }
 }

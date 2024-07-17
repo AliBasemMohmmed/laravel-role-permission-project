@@ -45,7 +45,7 @@ class PatientController extends Controller
      */
     public function create(): View
     {
-        return view('users.create', [
+        return view('patient.patientshow', [
             'roles' => Role::pluck('name')->all()
         ]);
     }
@@ -68,15 +68,20 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user): View
+    public function show(User $user): View|RedirectResponse
     {
         $user = Auth::user()->id;
         $patient = User::where('id', $user)->first();
         $prescription = Prescription::where('patient_name', $patient->name)->first();
-        $user2=User::where('name', $prescription->doctor_name)->first();
-        $Pharmacy = Pharmacy::where('user_id', $user2->id)->first();
-        if ($prescription->doctor_name !=null) {
-            $medications = Medication::where('prescription_id', $prescription->id)->first();
+        if ($prescription) {
+            $user2 = User::where('name', $prescription->doctor_name)->first();
+            $Pharmacy = Pharmacy::where('user_id', $user2->id)->first();
+
+
+            $medications = Medication::where('prescription_id', $prescription->id)
+                ->where('created_at', $prescription->created_at)
+                ->get();
+
             return view('patient.prescription', [
                 'doctor' => $prescription,
                 'prescriptions' => $prescription,
@@ -84,10 +89,9 @@ class PatientController extends Controller
                 'Pharmacy' =>  $Pharmacy
             ]);
         } else {
-            return redirect()->route('home.index')
-            ->with('success', 'New prescription is added successfully.');
+            return redirect()->route('home')
+                ->with('success', 'لم يتم اعطاء وصفه لك بعد ');
         }
-
     }
 
     /**

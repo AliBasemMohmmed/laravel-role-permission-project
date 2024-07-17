@@ -44,7 +44,7 @@ class dectorsController extends Controller
      */
     public function create(): View
     {   $doctor=Auth::User('email');
-        dd( $doctor);
+        
         return view('dectors.create', [
             'roles' => Role::pluck('name')->all()
         ]);

@@ -10,7 +10,8 @@ class Pharmacy extends Model
         'name',
         'location',
         'logo',
-        'user_id', // يجب تضمين user_id هنا
+        'user_id',
+        'Url_location', // يجب تضمين user_id هنا
     ];
 
     public function user()

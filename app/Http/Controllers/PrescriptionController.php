@@ -86,7 +86,7 @@ class PrescriptionController extends Controller
         foreach ($input['medication'] as $index => $medication) {
             Medication::create([
                 'prescription_id' => $prescription->id,
-                'medication_name' => $medication,
+                'product_id' => $medication,
                 'time' => $input['time'][$index],
                 'eating' => $input['eating'][$index],
                 'dosage_frequency' => $input['dosage_frequency'][$index],

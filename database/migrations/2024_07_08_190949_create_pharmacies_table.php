@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // اسم الصيدلية
             $table->string('location'); // الموقع
+            $table->string('Url_location'); // الموقع
             $table->string('logo')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null'); // الشعار (يمكن أن يكون قابل للفراغ)
