@@ -17,6 +17,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Include qrcode.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@1.0.0/qrcode.min.js"></script>
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -121,76 +123,78 @@
             border-color: #007bff;
         }
     </style>
-     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
-     <style>
-         .animated-text {
-             animation: fadeInUp 2s;
-         }
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <style>
+        .animated-text {
+            animation: fadeInUp 2s;
+        }
 
-         @keyframes fadeInUp {
-             from {
-                 transform: translate3d(0, 40px, 0);
-                 opacity: 0;
-             }
-             to {
-                 transform: translate3d(0, 0, 0);
-                 opacity: 1;
-             }
-         }
+        @keyframes fadeInUp {
+            from {
+                transform: translate3d(0, 40px, 0);
+                opacity: 0;
+            }
 
-         .navbar-custom {
-             background-color: #007bff;
-             color: white;
-         }
+            to {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+            }
+        }
 
-         .navbar-custom .navbar-brand,
-         .navbar-custom .nav-link {
-             color: white;
-         }
+        .navbar-custom {
+            background-color: #007bff;
+            color: white;
+        }
 
-         .navbar-custom .navbar-toggler {
-             border-color: rgba(255, 255, 255, 0.1);
-         }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: white;
+        }
 
-         .navbar-custom .navbar-toggler-icon {
-             background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-         }
+        .navbar-custom .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
 
-         .card-custom {
-             margin: 20px 0;
-             border: 1px solid #ddd;
-             border-radius: 10px;
-             overflow: hidden;
-         }
+        .navbar-custom .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
 
-         .card-custom img {
-             border-bottom: 1px solid #ddd;
-         }
+        .card-custom {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-         .card-custom h5 {
-             font-size: 1.25rem;
-             font-weight: bold;
-         }
+        .card-custom img {
+            border-bottom: 1px solid #ddd;
+        }
 
-         .card-custom p {
-             font-size: 1rem;
-         }
+        .card-custom h5 {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
 
-         .card-custom .btn {
-             background-color: #007bff;
-             color: #fff;
-             border-radius: 50px;
-             padding: 10px 20px;
-             transition: background-color 0.3s ease;
-         }
+        .card-custom p {
+            font-size: 1rem;
+        }
 
-         .card-custom .btn:hover {
-             background-color: #0056b3;
-         }
-     </style>
+        .card-custom .btn {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-custom .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 {{-- style="background-color:#007bff " --}}
-<body >
+
+<body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
             <path
@@ -347,7 +351,8 @@
                                 </li>
                             @endcan
                             @can(['view-prescription'])
-                                <li class="nav-item"><a class="nav-link" href="{{ route('patients.show', Auth::user()->id) }}">عرض
+                                <li class="nav-item"><a class="nav-link"
+                                        href="{{ route('patients.show', Auth::user()->id) }}">عرض
                                         الوصفات الطبية</a></li>
                             @endcan
 
@@ -444,6 +449,7 @@
         </footer> --}}
         </div>
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+        
 </body>
 
 </html>

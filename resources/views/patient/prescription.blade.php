@@ -62,5 +62,4 @@
             window.print();
         }
     </script>
-    
 @endsection
