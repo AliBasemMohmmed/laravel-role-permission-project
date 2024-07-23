@@ -32,6 +32,11 @@ class PermissionSeeder extends Seeder
             'view-product',
             'view-patient',
             'view-pharmacy',
+            'view-profile',
+            'create-profile',
+            'edit-profile',
+            'delete-profile',
+
         ];
 
         // Looping and Inserting Array's Permissions into Permission Table

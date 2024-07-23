@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\dectorsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\pharmacyController;
 use App\Http\Controllers\PharmacistController;
 use App\Http\Controllers\PrescriptionController;
@@ -29,4 +30,5 @@ Route::resources([
     'users' => UserController::class,
     'products' => ProductController::class,
     'patients' => PatientController::class,
+    'profiles' =>  ProfileController::class,
 ]);

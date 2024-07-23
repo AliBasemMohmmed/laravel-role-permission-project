@@ -50,12 +50,20 @@ class DefaultUserSeeder extends Seeder
         ]);
         $user->assignRole('User');
 
-        // $doctor = User::create([
-        //     'name' => 'Ali basem',
-        //     'gender' => 'male',
-        //     'email' => 'Ali@gmail.com',
-        //     'password' => Hash::make('123123123')
-        // ]);
-        // $doctor->assignRole('Doctor');
+        $doctor = User::create([
+            'name' => 'Ali basem',
+            'gender' => 'male',
+            'email' => 'Doctor@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        $doctor->assignRole('Doctor');
+
+        $pharmacists = User::create([
+            'name' => 'Ali basem',
+            'gender' => 'male',
+            'email' => 'Pharmacists@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
+        $pharmacists->assignRole('Pharmacists');
     }
 }

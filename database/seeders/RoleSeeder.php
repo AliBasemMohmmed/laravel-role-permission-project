@@ -17,7 +17,9 @@ class RoleSeeder extends Seeder
         $admin = Role::create(['name' => 'Admin']);
         $productManager = Role::create(['name' => 'Product Manager']);
         $user = Role::create(['name' => 'User']);
-        // $doctor=Role::create(['name' => 'Doctor']);
+        $doctor = Role::create(['name' => 'Doctor']);
+        $pharmacists = Role::create(['name' => 'Pharmacists']);
+
 
         $admin->givePermissionTo([
             'create-user',
@@ -36,6 +38,25 @@ class RoleSeeder extends Seeder
 
         $user->givePermissionTo([
             'view-prescription'
+        ]);
+
+        $doctor->givePermissionTo([
+            'create-dector',
+            'edit-dector',
+            'delete-dector',
+            'view-prescription',
+            'view-product',
+            'view-profile',
+            'create-profile',
+            'edit-profile',
+            'delete-profile',
+        ]);
+
+        $pharmacists->givePermissionTo([
+            'view-searchprescription',
+            'view-product',
+            'view-patient',
+            'view-pharmacy',
         ]);
 
         // $doctor->givePermissionTo([
