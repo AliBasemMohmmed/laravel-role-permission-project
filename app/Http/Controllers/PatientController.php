@@ -72,16 +72,14 @@ class PatientController extends Controller
     {
         $user = Auth::user()->id;
         $patient = User::where('id', $user)->first();
-        $prescription = Prescription::where('patient_name', $patient->name)->first();
+        $prescription = Prescription::where('patient_name', $patient->name)->latest()->first();
         if ($prescription) {
             $user2 = User::where('name', $prescription->doctor_name)->first();
             $Pharmacy = Pharmacy::where('user_id', $user2->id)->first();
 
-
             $medications = Medication::where('prescription_id', $prescription->id)
                 ->where('created_at', $prescription->created_at)
                 ->get();
-
             return view('patient.prescription', [
                 'doctor' => $prescription,
                 'prescriptions' => $prescription,

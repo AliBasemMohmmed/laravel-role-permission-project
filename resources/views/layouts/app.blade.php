@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>My_Pharamcy</title>
+    <title>MyPharamcy</title>
     <link rel="shortcut icon" href="{{ asset('icon/ertyu.ico') }}">
 
 
@@ -26,6 +26,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         .bd-placeholder-img {
@@ -214,6 +215,55 @@
                 d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
         </symbol>
     </svg>
+    <div class="b-example-divider"></div>
+
+    <header class="py-3 mb-3 border-bottom">
+        <div class="container-fluid d-grid gap-3 align-items-center" style="grid-template-columns: 1fr 2fr;">
+            <div class="dropdown">
+                <a href="#"
+                    class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg class="bi me-2" width="40" height="32">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                </a>
+                <ul class="dropdown-menu text-small shadow">
+                    <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
+                    <li><a class="dropdown-item" href="#">Inventory</a></li>
+                    <li><a class="dropdown-item" href="#">Customers</a></li>
+                    <li><a class="dropdown-item" href="#">Products</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Reports</a></li>
+                    <li><a class="dropdown-item" href="#">Analytics</a></li>
+                </ul>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <form class="w-100 me-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="flex-shrink-0 dropdown">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32"
+                            class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small shadow">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
         <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
@@ -249,8 +299,8 @@
                 </button>
             </li>
             <li>
-                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-                    aria-pressed="true">
+                <button type="button" class="dropdown-item d-flex align-items-center active"
+                    data-bs-theme-value="auto" aria-pressed="true">
                     <svg class="bi me-2 opacity-50" width="1em" height="1em">
                         <use href="#circle-half"></use>
                     </svg>
@@ -286,10 +336,12 @@
     </svg>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-custom shadow-sm fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}">
-                    My_Pharmacy.com
-                </a>
+            <div class="container d-flex align-items-center">
+                <img src="{{ asset('icon/pharmacy.png') }}" alt="Pharmacy Icon" class="img-fluid rounded-circle"
+                    style="width: 40px; height: 40px;margin-right:2%">
+                <span><a class="navbar-brand ml-3" href="{{ route('home') }}">
+                        MyPharmacy.com
+                    </a></span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -355,7 +407,10 @@
                                         href="{{ route('patients.show', Auth::user()->id) }}">عرض
                                         الوصفات الطبية</a></li>
                             @endcan
-
+                            @can(['view-searchprescription'])
+                                <li class="nav-item"><a class="nav-link" href="{{ route('pharmacists.index') }}">
+                                        البحث عن الطبية</a></li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -378,6 +433,7 @@
                     </ul>
                 </div>
             </div>
+            {{-- </div> --}}
         </nav>
 
 
@@ -449,7 +505,7 @@
         </footer> --}}
         </div>
         <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-        
+
 </body>
 
 </html>

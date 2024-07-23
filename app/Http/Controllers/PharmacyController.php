@@ -60,6 +60,23 @@ class PharmacyController extends Controller
             return redirect()->back()->withErrors(['user_id' => 'Doctor not found.']);
         }
 
+        // التحقق مما إذا كان الاسم المدخل موجود بالفعل
+        $existingPharmacyName = Pharmacy::where('name', $request->name)->first();
+        if ($existingPharmacyName) {
+            return redirect()->back()->withErrors(['name' => 'This pharmacy name is already taken. Please choose a different name.']);
+        }
+
+        // التحقق مما إذا كان الطبيب يملك بالفعل صيدلية
+        $existingPharmacy = Pharmacy::where('user_id', $doctor->id)->first();
+        if ($existingPharmacy) {
+            // تحديث اسم الصيدلية الحالية
+            $existingPharmacy->update(['name' => $request->name]);
+
+            // إعادة التوجيه إلى صفحة قائمة الصيدليات مع رسالة نجاح
+            return redirect()->route('pharmacy.index')
+                ->withSuccess('Pharmacy name updated successfully.');
+        }
+
         // إعادة تعيين user_id بمعرف الطبيب المحدد
         $request->merge(['user_id' => $doctor->id]);
 
@@ -70,6 +87,9 @@ class PharmacyController extends Controller
         return redirect()->route('pharmacy.index')
             ->withSuccess('New Pharmacy is added successfully.');
     }
+
+
+
 
 
     /**

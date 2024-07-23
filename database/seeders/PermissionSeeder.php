@@ -23,14 +23,15 @@ class PermissionSeeder extends Seeder
             'create-dector',
             'edit-dector',
             'delete-dector',
-            'view-product',
-            'view-patient',
-            'view-pharmacy',
             'create-product',
             'edit-product',
             'delete-product',
             'view-description',
-            'view-prescription'
+            'view-prescription',
+            'view-searchprescription',
+            'view-product',
+            'view-patient',
+            'view-pharmacy',
         ];
 
         // Looping and Inserting Array's Permissions into Permission Table

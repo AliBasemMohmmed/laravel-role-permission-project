@@ -9,6 +9,7 @@ use App\Http\Controllers\dectorsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\pharmacyController;
+use App\Http\Controllers\PharmacistController;
 use App\Http\Controllers\PrescriptionController;
 
 Auth::routes();
@@ -22,6 +23,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resources([
     'roles' => RoleController::class,
     'pharmacy' => pharmacyController::class,
+    'pharmacists' => PharmacistController::class,
     'prescription' => PrescriptionController::class,
     'dectors' => dectorsController::class,
     'users' => UserController::class,

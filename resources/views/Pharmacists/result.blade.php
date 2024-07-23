@@ -24,10 +24,11 @@
                 <div class="mb-3 text-right" style="text-align: right;">
                     <label for="prescription_number" class="form-label">رقم الوصفة الطبية</label>
                     <input type="text" class="form-control text-right" id="prescription_number"
-                        name="prescription_number" value="{{ $prescriptions->prescription_number }}" disabled style="text-align: right;">
+                        name="prescription_number" value="{{ $prescriptions->prescription_number }}" disabled
+                        style="text-align: right;">
                 </div>
                 <div class="mb-3 text-right" style="text-align: right;">
-                    <label for="dispensation_date" class="form-label" >تاريخ الصرف</label>
+                    <label for="dispensation_date" class="form-label">تاريخ الصرف</label>
                     <input type="date" class="form-control text-right" id="dispensation_date" name="dispensation_date"
                         value="{{ $prescriptions->dispensation_date }}" disabled style="text-align:right;">
                 </div>
@@ -62,10 +63,11 @@
             </div>
         </div>
     </div>
-
     <script>
         function printPrescription() {
             window.print();
         }
     </script>
+
+
 @endsection
