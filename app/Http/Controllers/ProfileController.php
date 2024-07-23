@@ -29,8 +29,11 @@ class ProfileController extends Controller
      */
     public function index(): View
     {
+        $user = Auth::user();
+        $profile = Profile::where('user_id', $user->id)->first();
+
         return view('profiles.index', [
-            'profiles' => Profile::latest()->paginate(10)
+            'profile' => $profile
         ]);
     }
 

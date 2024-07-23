@@ -386,9 +386,16 @@
                                             {{ __('تسجيل الخروج') }}
                                         </a></li>
                                     <!-- إضافة بروفايل -->
-                                    <li><a class="dropdown-item" href="{{ route('profiles.index') }}">
-                                            {{ __(' بروفايل') }}
+                                    @can(['view-profile'])
+                                        <li><a class="dropdown-item" href="{{ route('profiles.index') }}">
+                                                {{ __(' بروفايل') }}
+                                            </a></li>
+                                    @endcan
+                                    @can(['view-settings','edit-settings'])
+                                    <li><a class="dropdown-item" href="{{ route('settings.index') }}">
+                                            {{ __('الاعدادت') }}
                                         </a></li>
+                                @endcan
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
                                         @csrf

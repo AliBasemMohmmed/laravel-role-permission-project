@@ -50,6 +50,9 @@ class RoleSeeder extends Seeder
             'create-profile',
             'edit-profile',
             'delete-profile',
+            'edit-settings',
+            'create-settings',
+            'view-settings',
         ]);
 
         $pharmacists->givePermissionTo([
