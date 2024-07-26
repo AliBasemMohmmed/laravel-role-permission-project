@@ -39,6 +39,7 @@ class PermissionSeeder extends Seeder
             'edit-settings',
             'create-settings',
             'view-settings',
+            'view-reservation',
 
         ];
 

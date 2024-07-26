@@ -12,6 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\pharmacyController;
 use App\Http\Controllers\PharmacistController;
+use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\PrescriptionController;
 
 Auth::routes();
@@ -33,4 +35,10 @@ Route::resources([
     'patients' => PatientController::class,
     'profiles' =>  ProfileController::class,
     'settings' =>  SettingController::class,
+    'reservations' =>ReservationController::class,
 ]);
+
+Route::resource('reservations', ReservationController::class);
+Route::get('appointment/book/{doctor}', [AppointmentController::class, 'book'])->name('appointment.book');
+Route::post('appointment/book/{doctor}', [AppointmentController::class, 'store'])->name('appointment.store');
+

@@ -4,8 +4,8 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card shadow-lg bg-primary border-light rounded-3">
-                    <div class="card-header bg-gradient-primary text-white border-0 rounded-top">
+                <div class="card shadow-lg  border-light rounded-3">
+                    <div class="card-header bg-primary text-white border-0 rounded-top">
                         <h5 class="mb-0">User Settings</h5>
                     </div>
                     <div class="card-body">

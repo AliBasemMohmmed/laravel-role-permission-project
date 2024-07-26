@@ -52,4 +52,25 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    public function pharmacy()
+    {
+        return $this->hasOne(Pharmacy::class);
+    }
+
+    public function settings()
+    {
+        return $this->hasOne(Setting::class);
+    }
+
+    // User.php
+    public function reservationsAsDoctor()
+    {
+        return $this->hasMany(Reservation::class, 'doctor_id');
+    }
+
+    public function reservationsAsPatient()
+    {
+        return $this->hasMany(Reservation::class, 'patient_id');
+    }
 }

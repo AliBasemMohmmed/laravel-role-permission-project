@@ -359,6 +359,11 @@
                                         href="{{ route('patients.show', Auth::user()->id) }}">عرض
                                         الوصفات الطبية</a></li>
                             @endcan
+                            @can(['view-reservation'])
+                            <li class="nav-item"><a class="nav-link"
+                                    href="{{ route('reservations.index', Auth::user()->id) }}"> قائمة الاطباء
+                                     </a></li>
+                        @endcan
                             @can(['view-searchprescription'])
                                 <li class="nav-item"><a class="nav-link" href="{{ route('pharmacists.index') }}">
                                         البحث عن الطبية</a></li>
