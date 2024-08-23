@@ -35,10 +35,11 @@ Route::resources([
     'patients' => PatientController::class,
     'profiles' =>  ProfileController::class,
     'settings' =>  SettingController::class,
-    'reservations' =>ReservationController::class,
+    'reservations' => ReservationController::class,
+    'appointments' => AppointmentController::class,
 ]);
 
-Route::resource('reservations', ReservationController::class);
-Route::get('appointment/book/{doctor}', [AppointmentController::class, 'book'])->name('appointment.book');
-Route::post('appointment/book/{doctor}', [AppointmentController::class, 'store'])->name('appointment.store');
-
+// Route::resource('reservations', ReservationController::class);
+// Route::get('appointment/book/{doctor}', [AppointmentController::class, 'book'])->name('appointment.book');
+// Route::post('appointment/book/{doctor}', [AppointmentController::class, 'store'])->name('appointment.store');
+// Route::get('/appointments/{appointment}', [AppointmentController::class, 'show'])->name('appointments.show');

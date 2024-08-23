@@ -37,7 +37,9 @@ class RoleSeeder extends Seeder
         ]);
 
         $user->givePermissionTo([
-            'view-prescription'
+            'view-prescription',
+            'view-appointment',
+            'view-reservation',
         ]);
 
         $doctor->givePermissionTo([
@@ -53,6 +55,7 @@ class RoleSeeder extends Seeder
             'edit-settings',
             'create-settings',
             'view-settings',
+            'view-allppointment',
         ]);
 
         $pharmacists->givePermissionTo([

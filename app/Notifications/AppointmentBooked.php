@@ -37,7 +37,7 @@ class AppointmentBooked extends Notification
     {
         return (new MailMessage)
             ->line('Your appointment has been booked.')
-            ->action('View Appointment', url('/appointments/' . $this->appointment->id))
+            ->action('View Appointment', url('/appointments/show' . $this->appointment->id))
             ->line('Thank you for using our application!');
     }
 

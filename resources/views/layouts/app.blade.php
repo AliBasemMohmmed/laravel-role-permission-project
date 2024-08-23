@@ -360,14 +360,18 @@
                                         الوصفات الطبية</a></li>
                             @endcan
                             @can(['view-reservation'])
-                            <li class="nav-item"><a class="nav-link"
-                                    href="{{ route('reservations.index', Auth::user()->id) }}"> قائمة الاطباء
-                                     </a></li>
-                        @endcan
+                                <li class="nav-item"><a class="nav-link"
+                                        href="{{ route('reservations.index', Auth::user()->id) }}"> قائمة الاطباء
+                                    </a></li>
+                            @endcan
                             @can(['view-searchprescription'])
                                 <li class="nav-item"><a class="nav-link" href="{{ route('pharmacists.index') }}">
                                         البحث عن الطبية</a></li>
                             @endcan
+                            @can(['view-allppointment'])
+                            <li class="nav-item"><a class="nav-link" href="{{ route('appointments.index') }}">
+                                      قائمة الحجوزات</a></li>
+                        @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center"
                                     href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -396,11 +400,11 @@
                                                 {{ __(' بروفايل') }}
                                             </a></li>
                                     @endcan
-                                    @can(['view-settings','edit-settings'])
-                                    <li><a class="dropdown-item" href="{{ route('settings.index') }}">
-                                            {{ __('الاعدادت') }}
-                                        </a></li>
-                                @endcan
+                                    @can(['view-settings', 'edit-settings'])
+                                        <li><a class="dropdown-item" href="{{ route('settings.index') }}">
+                                                {{ __('الاعدادت') }}
+                                            </a></li>
+                                    @endcan
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         class="d-none">
                                         @csrf

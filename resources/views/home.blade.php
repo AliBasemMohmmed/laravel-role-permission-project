@@ -16,7 +16,6 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
-
                         <p>{{ __('You are logged in!') }}</p>
                         @canany(['create-role', 'edit-role', 'delete-role'])
                             <a class="btn btn-primary" href="{{ route('roles.index') }}">
@@ -91,6 +90,16 @@
                                         <div class="card-body">
                                             <h5 class="card-title">عدد الأطباء</h5>
                                             <p class="card-text">{{ $numberOfUsers['Doctor'] }}</p>
+                                            {{-- <div>
+                                                @foreach (auth()->user()->notifications as $notification)
+                                                    <div class="alert alert-info">
+                                                        {{ $notification->data['appointment_id'] }} -
+                                                        {{ $notification->data['appointment_date'] }} -
+                                                        {{ $notification->data['appointment_time'] }}
+                                                    </div>
+                                                @endforeach
+
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>

@@ -40,6 +40,7 @@ class PermissionSeeder extends Seeder
             'create-settings',
             'view-settings',
             'view-reservation',
+            'view-appointment',
 
         ];
 
